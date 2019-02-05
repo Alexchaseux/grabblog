@@ -64,31 +64,53 @@ data(){
 
 Vue.component('mini-blog',{
 template: ` 
-<div class="col-12">
+<div class="row">
+<div v-for="item in grab" class="col-12">
 <div class="boxBlog_mini">
         <ul>
-                <li v-for="tags in categoryTag">{{ tags }}</li>
+                <li>{{ item.tags }}</li>
             </ul>
-            <h2>{{ header }}</h2>
+            <h2>{{ item.header }}</h2>
             <span> {{ dates }} </span> <a class="btn_arrow" :href="linkPage"></a>
 
 </div>
 </div>
 
+</div>
+
+
 
 
 `,
-
-props: {
-    categoryTag: Array,
-    header: Array
-    
-},
+props: ['item'],
 data(){
 return {
     dates: new Date().getFullYear(),
     linkPage: '/page.html',
-    categoryTag: ['Привет'],
+    grab: [
+        {
+            header: 'Что делать, если всё пошло не так?',
+            tags: '#memes'
+    
+        },
+        {
+            header: 'Выпущен инструмент для сборки node-пакетов одной командой',
+            tags: '#IT'
+    
+        },
+        {
+            header: 'Mail.ru Group запустила свой новый браузер Atom',
+            tags: '#News'
+    
+        },
+        {
+            header: 'В бета-версии iOS 12.2 появились новые Animoji',
+            tags: '#Move'
+    
+        }
+    
+    ]
+    
 
    
    
@@ -108,21 +130,19 @@ template: `
 </div>
 </div>
 <div class="row">
-<div class="col-lg-8 pr-lg-0 pr-3">
+<div v-for="colin in parseOut" class="col-lg-8 pr-lg-0 pr-3">
     <div class="row">
         <div class="col-lg-12">
-            <div :style="{ 'background-image': 'url(' + linkimg + ')' }" class="boxBlog">
+            <div :style="{ 'background-image': 'url(' + colin.linkimg + ')' }" class="boxBlog">
                 <div class="category">
                     <ul>
-                        <li>#Новости</li>
-                        <li>#Огодакактак</li>
+                        <li>{{ colin.tags }}</li>
+                       
                     </ul>
 
                 </div>
-                <h2>{{ header }}</h2>
-                <p>Экс-банкир Илья Зибарев о том, почему государство не должно заниматься банками, какова
-                    стратегия ЦБ и что такое повседневная благотворительность, — в интервью <b>Инне Лунёвой
-                    </b>. </p>
+                <h2>{{ colin.header }}</h2>
+                <p> {{ colin.text }} </p>
                 <div class="but_data">
 
                     <a class="btn_read" :href="linkPage">ЧИТАТЬ</a> <span>
@@ -150,7 +170,7 @@ template: `
 
                     <a class="btn_read" :href="linkPage">ЧИТАТЬ</a> <span>
 
-                    {{ dates }}
+                    Дата
                     </span>
                 </div>
             
@@ -183,14 +203,13 @@ template: `
 
 </div>
 <div class="col-lg-4 pr-lg-0 pr-3">
-    <div class="row">
+    
      
       <mini-blog
-      :category-tag="categoryNumb[0]"
-      :header="categoryNumb[0]"
-      v-for="blog in categoryNumb"></mini-blog>
+      
+      ></mini-blog>
  
-    </div>
+    
 
 </div>
 
@@ -206,19 +225,21 @@ template: `
    
 `,
 
-props: {
-header: String,
-linkimg: String,
-texthere: String,
-headerBox: String,
-categoryNumb: Array
-},
+props: ['colin'],
 data(){
     return {
         dates: new Date().getFullYear(),
-        linkPage: '',
-        categoryNumb: [2,4]
+        parseOut: [{
+            tags: '#Новости',
+            header: 'Всё вроде как работает, но это не точно',
+            text: 'В компании отмечают, что при создании браузера разработчики делали акцент на безопасность и приватность пользователей. В Atom можно будет «в один клик» блокировать рекламу и предложения подписаться на уведомления сайтов.',
+            linkimg: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
+            link: 'https://unsplash.com/photos/phIFdC6lA4E'
+            
+            },
         
+        
+        ]
         
     }
     }
@@ -226,3 +247,6 @@ data(){
 let app = new Vue({
 el: '#app'
 });
+
+
+

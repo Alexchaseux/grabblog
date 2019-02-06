@@ -1,3 +1,51 @@
+// allpages
+Vue.component('item-page',{
+template: `
+<div>
+
+<div v-for="item in content" class="box_all">
+                                <div class="row">
+
+                                    <div class="col-lg-3">
+                                        <div class="img_box ">
+                                            <img :src="item.imgitem"
+                                                alt="img">
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="col-lg-6">
+
+                                        <h1>{{ item.header }}</h1>
+                                        <p>{{ item.text }}</p>
+
+                                    </div>
+
+                                    <div class="col-lg-3">
+
+                                        <a class="read_all " href="#">
+                                            Читать
+                                        </a>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+</div>
+
+`,
+props:{
+    content: Array
+
+}
+
+});
+
+// page
+
 Vue.component('page-blog',{
 template:  `
 <div class="container">
@@ -7,7 +55,7 @@ template:  `
 
                 <div :style="{ 'background-image': 'url(' + linkimg + ')' }" class="img_page"></div>
                 <h1>
-                    Банки — это бизнес, но не в России
+                   {{ header }}
 
                 </h1>
                 <p>
@@ -36,10 +84,9 @@ template:  `
             </div>
 
         </div>
-        <div class="col-12 col-lg-4 pl-lg-0 pl-0 pr-0">
+        <div class="col-lg-4 pr-lg-0 pr-3">
 
-            <mini-blog
-            v-for="c in 5"></mini-blog>
+            <mini-blog></mini-blog>
 
         </div>
 
@@ -49,19 +96,20 @@ template:  `
 </div>
 
 `,
-data(){
-    return{
-  textBlog: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe harum neque quas!',
-  resourseStr: 'Вконтакте',
-  resoursLink: '#',
-  linkimg: 'https://sun7-3.userapi.com/c543108/v543108289/3d789/-ZDeSzMWC9A.jpg'
+props: {
+    header: String,
+    textBlog: String,
+    resourseStr: String,
+    linkimg: String,
+    resourseStr: String,
+    resoursLink: String,
 
-    }
+
 }
 
 })
 
-
+//mini blog
 Vue.component('mini-blog',{
 template: ` 
 <div class="row">
@@ -120,132 +168,61 @@ return {
 
 });
 
+//blogbox
 Vue.component('blog-box',{
-template: `
-
-<div class="container"> 
-<div class="row">
-<div class="col-12">
-    <h1 class="one_he">{{ headerBox }}</h1>
-</div>
-</div>
-<div class="row">
-<div v-for="colin in parseOut" class="col-lg-8 pr-lg-0 pr-3">
-    <div class="row">
-        <div class="col-lg-12">
-            <div :style="{ 'background-image': 'url(' + colin.linkimg + ')' }" class="boxBlog">
-                <div class="category">
-                    <ul>
-                        <li>{{ colin.tags }}</li>
-                       
-                    </ul>
-
-                </div>
-                <h2>{{ colin.header }}</h2>
-                <p> {{ colin.text }} </p>
-                <div class="but_data">
-
-                    <a class="btn_read" :href="linkPage">ЧИТАТЬ</a> <span>
-
-                    {{ dates }}
-                    </span>
-                </div>
-
-
-
-            </div>
-        </div>
-        <div class="col-lg-6 pr-lg-0 pr-md-3 ">
-            <div class="boxBlog" style=" background-image: url(/css/img/box_two.png)">
-                <div class="category">
-                    <ul>
-                        <li>#Новости</li>
-                       
-                    </ul>
-
-                </div>
-                <h2>{{ header }}</h2>
-                <p>{{ texthere }} </p>
-                <div class="but_data">
-
-                    <a class="btn_read" :href="linkPage">ЧИТАТЬ</a> <span>
-
-                    Дата
-                    </span>
-                </div>
-            
-            </div>
-        </div>
-        <div class="col-lg-6 ">
-                     <div class="boxBlog" style="background-image: url(/css/img/box_two.png)">
-                <div class="category">
-                    <ul>
-                        <li>#Новости</li>
-                       
-                    </ul>
-
-                </div>
-                <h2>{{ header }}</h2>
-                <p> {{ texthere }} </p>
-                <div class="but_data">
-
-                    <a class="btn_read" :href="linkPage">ЧИТАТЬ</a> <span>
-
-                    {{ dates }}
-                    </span>
-                </div>
-            
-            </div>
-        </div>
-
-
-    </div>
-
-</div>
-<div class="col-lg-4 pr-lg-0 pr-3">
-    
-     
-      <mini-blog
-      
-      ></mini-blog>
- 
-    
-
-</div>
-
-</div>
-<div class="container">
-                    <hr class="mt-5 mb-0">
-               
-                </div>
-                
-</div>
-
-
-   
-`,
-
-props: ['colin'],
-data(){
-    return {
-        dates: new Date().getFullYear(),
-        parseOut: [{
-            tags: '#Новости',
-            header: 'Всё вроде как работает, но это не точно',
-            text: 'В компании отмечают, что при создании браузера разработчики делали акцент на безопасность и приватность пользователей. В Atom можно будет «в один клик» блокировать рекламу и предложения подписаться на уведомления сайтов.',
-            linkimg: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
-            link: 'https://unsplash.com/photos/phIFdC6lA4E'
-            
-            },
-        
-        
-        ]
-        
-    }
-    }
+    template: '#blog-box',
+    props: {
+        items: Array,
+        headerBox: String,
+    },
+});
+Vue.component('blog-item',{
+    template: '#blog-item',
+    props: {
+        item: Object,
+        index: Number,
+    },
 })
+
 let app = new Vue({
-el: '#app'
+el: '#app',
+data: {
+    blogItems: [
+        {
+            title: 'Учёные нашли самое старое живое позвоночное на Земле',
+            shortText: 'Это был год, когда Мартин Лютер стал монахом, а король Генрих VIII отменил свою помолвку с Екатериной Арагонской… в общем, безумно давно.',
+            url: '',
+            imgLink: 'https://habrastorage.org/webt/pq/mk/kb/pqmkkbutce19qwwcylauyuc8kau.png',
+            year: '06.02.2019',
+            tags: [
+                'Порно',
+                'Новости'
+            ]
+        },
+        {
+            title: 'Приводим в порядок плейлист Торрент-ТВ ',
+            shortText: '',
+            url: '',
+            imgLink: 'https://images.unsplash.com/photo-1547532182-bf296f6be875?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80',
+            year: '06.02.2019',
+            tags: [
+                'Порно',
+                'Новости'
+            ]
+        },
+        {
+            title: 'Как же блять голова болит пиздец',
+            shortText: '',
+            url: '',
+            imgLink: 'https://images.unsplash.com/photo-1547626740-02cb6aed9ef8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
+            year: '06.02.2019',
+            tags: [
+                'Порно',
+                'Новости'
+            ]
+        },
+    ]
+}
 });
 
 

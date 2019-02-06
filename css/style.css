@@ -174,6 +174,7 @@ color: #658F9C;
     width: auto;
     height: 300px;
     border-radius: 8px;
+    background-size: contain;
 }
 
 nav{
@@ -192,4 +193,46 @@ footer{
 }
 .resours a {
     float: right;
+}
+
+.box_all{
+    width: auto;
+    height: 150px;
+    background-color: white;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.img_box {
+    display: block;
+    width: auto;
+    height: 130px;  
+    overflow: hidden;
+    border-radius: 4px;
+}
+.img_box img{
+    width: 220px;
+}
+.read_all{
+    color: #334259;
+    display: block;
+    padding: 5px;
+    border: 1px solid #334259;
+    text-align: center;
+    border-radius: 2px;
+    margin: 0 auto;
+    margin-top: 50px;
+    transition: 0.2s;
+}
+.read_all:hover{
+    text-decoration: none;
+    background-color: #334259;
+    color: white;
+}
+
+.box_banner{
+    display: block;
+width: auto;
+height: 300px;
+background-color: #334259;
 }

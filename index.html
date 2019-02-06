@@ -42,40 +42,68 @@
         </div>
     </nav>
 
-<div id="app">
-
-       
-            <blog-box 
-        
-           
-            
-            >
-  
-        </blog-box>
-   
-             
-  
-
-
-                <blog-box
-                
-             
-                
-                ></blog-box>
-   
-        
-
-       
-</div>
-
-<footer class="footer">
-    <div class="container">
-      <span class="text-muted">Place sticky footer content here.</span>
+    <div id="app">
+        <blog-box :items="blogItems" header-box='НОВОСТИ НАУКИ'></blog-box>
+        {{ firstItem }}
     </div>
-  </footer>
+
+<script type="text/x-template" id="blog-item">
+    <div :class="index == 0 ? 'col-lg-12' : 'col-lg-6 pl-0 pl-lg-3'">
+        <div  class="boxBlog" :style="{ 'background-image': 'url(' + item.imgLink + ')' }">
+            <div class="category">
+                <ul>
+                    <li v-for="tag in item.tags">{{ tag }}</li>
+                </ul>
+            </div>
+            <h2>{{ item.title }}</h2>
+            <p> {{ item.shortText }} </p>
+            <div class="but_data">
+                <a class="btn_read" :href="item.url">ЧИТАТЬ</a> <span>
+                {{ item.year }}
+                </span>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/x-template" id="blog-box">
+    <div class="container"> 
+        <div class="row">
+            <div class="col-12">
+                <h1 class="one_he">{{ headerBox }}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 pr-lg-0 pr-3">
+                <div class="row">
+                    <blog-item v-for="(item, index) in items" :index='index' :item="item"></blog-item>
+                </div>
+            </div>
+            <div class="col-lg-4 pr-lg-0 pr-3">
+                  <mini-blog></mini-blog>
+            </div>
+        </div>
+        <div class="container">
+            <hr class="mt-5 mb-0">
+        </div>                            
+    </div>
+</script>
 
 
-    
+
+
+
+
+
+
+
+    <footer class="footer">
+        <div class="container">
+            <span class="text-muted">Place sticky footer content here.</span>
+        </div>
+    </footer>
+
+
+
 
 
 
@@ -97,8 +125,8 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
         crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.22/vue.js"></script>
-        <script src="js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.22/vue.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>

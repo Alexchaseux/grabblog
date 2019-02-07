@@ -1,44 +1,21 @@
 // allpages
+
+
+
+Vue.component('all-pages',{
+    template: "#all-pages",
+    props:{
+        content: Array
+    
+    }
+    
+    });
+    
 Vue.component('item-page',{
-template: `
-<div>
-
-<div v-for="item in content" class="box_all">
-                                <div class="row">
-
-                                    <div class="col-lg-3">
-                                        <div class="img_box ">
-                                            <img :src="item.imgitem"
-                                                alt="img">
-
-                                        </div>
-
-
-                                    </div>
-                                    <div class="col-lg-6">
-
-                                        <h1>{{ item.header }}</h1>
-                                        <p>{{ item.text }}</p>
-
-                                    </div>
-
-                                    <div class="col-lg-3">
-
-                                        <a class="read_all " href="#">
-                                            Читать
-                                        </a>
-                                    </div>
-
-                                </div>
-
-
-                            </div>
-
-</div>
-
-`,
+template: "#item-page",
 props:{
-    content: Array
+    cat: Object,
+    index: Number
 
 }
 
@@ -46,126 +23,30 @@ props:{
 
 // page
 
+Vue.component('page-content',{
+template: '#page-content',
+props:{
+page: Object
+}
+
+});
+
 Vue.component('page-blog',{
-template:  `
-<div class="container">
-    <div class="row">
-        <div class="col-12 col-lg-8 pr-lg-0 pr-3">
-            <div class="page">
-
-                <div :style="{ 'background-image': 'url(' + linkimg + ')' }" class="img_page"></div>
-                <h1>
-                   {{ header }}
-
-                </h1>
-                <p>
-                {{ textBlog }} </p>
-                <p>
-                 
-{{ textBlog }}
-                </p>
-                <hr class="mt-5 mb-0">
-                <div class="resours">
-                    <div class="row">
-
-                        <div class="col-6">
-                            <p>Источник</p>
-                        </div>
-                        <div class="col-6">
-                            <a :href=" resoursLink ">{{ resourseStr }}</a>
-                        </div>
-
-                    </div>
-                </div>
-          
-
-
-
-            </div>
-
-        </div>
-        <div class="col-lg-4 pr-lg-0 pr-3">
-
-            <mini-blog></mini-blog>
-
-        </div>
-
-
-
-    </div>
-</div>
-
-`,
+template: '#page-blog',
 props: {
-    header: String,
-    textBlog: String,
-    resourseStr: String,
-    linkimg: String,
-    resourseStr: String,
-    resoursLink: String,
-
-
+   pages: Array,
+   lotes: Array
 }
 
 })
 
 //mini blog
 Vue.component('mini-blog',{
-template: ` 
-<div class="row">
-<div v-for="item in grab" class="col-12">
-<div class="boxBlog_mini">
-        <ul>
-                <li>{{ item.tags }}</li>
-            </ul>
-            <h2>{{ item.header }}</h2>
-            <span> {{ dates }} </span> <a class="btn_arrow" :href="linkPage"></a>
-
-</div>
-</div>
-
-</div>
-
-
-
-
-`,
-props: ['item'],
-data(){
-return {
-    dates: new Date().getFullYear(),
-    linkPage: '/page.html',
-    grab: [
-        {
-            header: 'Что делать, если всё пошло не так?',
-            tags: '#memes'
-    
-        },
-        {
-            header: 'Выпущен инструмент для сборки node-пакетов одной командой',
-            tags: '#IT'
-    
-        },
-        {
-            header: 'Mail.ru Group запустила свой новый браузер Atom',
-            tags: '#News'
-    
-        },
-        {
-            header: 'В бета-версии iOS 12.2 появились новые Animoji',
-            tags: '#Move'
-    
-        }
-    
-    ]
-    
-
-   
-   
-
+template: '#mini-blog',
+props: {
+    lot: Object,
+    index: Number,
 }
-}
-
 });
 
 //blogbox
@@ -174,14 +55,16 @@ Vue.component('blog-box',{
     props: {
         items: Array,
         headerBox: String,
+        lotes: Array
     },
 });
+
 Vue.component('blog-item',{
     template: '#blog-item',
     props: {
         item: Object,
         index: Number,
-    },
+    }
 })
 
 let app = new Vue({
@@ -192,35 +75,104 @@ data: {
             title: 'Учёные нашли самое старое живое позвоночное на Земле',
             shortText: 'Это был год, когда Мартин Лютер стал монахом, а король Генрих VIII отменил свою помолвку с Екатериной Арагонской… в общем, безумно давно.',
             url: '',
-            imgLink: 'https://habrastorage.org/webt/pq/mk/kb/pqmkkbutce19qwwcylauyuc8kau.png',
+            imgLink: 'https://mir-s3-cdn-cf.behance.net/project_modules/disp/6beace12202611.56258d0701829.gif',
             year: '06.02.2019',
             tags: [
-                'Порно',
+                'Тренд',
                 'Новости'
             ]
         },
         {
             title: 'Приводим в порядок плейлист Торрент-ТВ ',
-            shortText: '',
+            shortText: 'Определяет параметры видимости текста в блоке, если текст целиком не помещается в заданную область.',
             url: '',
             imgLink: 'https://images.unsplash.com/photo-1547532182-bf296f6be875?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80',
             year: '06.02.2019',
             tags: [
-                'Порно',
+                'Наука',
                 'Новости'
             ]
         },
         {
-            title: 'Как же блять голова болит пиздец',
-            shortText: '',
+            title: 'Lorem ipsum lorem ipsum',
+            shortText: 'Определяет параметры видимости текста в блоке, если текст целиком не помещается в заданную область.',
             url: '',
             imgLink: 'https://images.unsplash.com/photo-1547626740-02cb6aed9ef8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
             year: '06.02.2019',
             tags: [
-                'Порно',
+                'Наука',
                 'Новости'
             ]
         },
+    ],
+    blogMini: [
+        {
+            header: 'Что делать, если всё пошло не так?',
+            tags: ['#Новости', '#Наука'],
+            link: '#',
+            dates: '07.02.2019'
+    
+        },
+        {
+            header: 'Выпущен инструмент для сборки node-пакетов одной командой',
+            tags: ['#Новости', '#Наука'],
+            link: '#',
+            dates: '07.02.2019'
+    
+        },
+        {
+            header: 'Mail.ru Group запустила свой новый браузер Atom',
+            tags: ['#Новости', '#Наука'],
+            link: '#',
+            dates: '07.02.2019'
+    
+        },
+        {
+            header: 'В бета-версии iOS 12.2 появились новые Animoji',
+            tags: ['#Новости', '#Наука'],
+            link: 'page.html',
+            dates: '07.02.2019'
+    
+        }
+    
+    ],
+    pageObject: [
+
+{
+    header: 'Mail.ru Group запустила свой новый браузер Atom',
+    textBlog: 'Это был год, когда Мартин Лютер стал монахом, а король Генрих VIII отменил свою помолвку с Екатериной Арагонской… в общем, безумно давно.',
+    resoursLink: '',
+    resourseStr: 'Вконтакте',
+    img: 'https://images.unsplash.com/photo-1547626740-02cb6aed9ef8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'
+}
+
+    ],
+    allPages: [
+        {
+            header: 'Что делать, если всё пошло не так?',
+            text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit sed explicabo eligendi facere atque tenetur!',
+            imgitem: 'https://images.unsplash.com/photo-1549417182-56f2bafc2c40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1355&q=80'
+    
+        },
+        {
+            header: 'Выпущен инструмент для сборки node-пакетов одной командой',
+            text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit sed explicabo eligendi facere atque tenetur!',
+            imgitem: 'https://images.unsplash.com/photo-1547979854-5333256878de?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'
+    
+        },
+        {
+            header: 'Mail.ru Group запустила свой новый браузер Atom',
+            text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit sed explicabo eligendi facere atque tenetur!',
+            imgitem: 'https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1355&q=80'
+    
+        },
+        {
+            header: 'В бета-версии iOS 12.2 появились новые Animoji',
+            text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit sed explicabo eligendi facere atque tenetur!',
+            imgitem: 'https://images.unsplash.com/photo-1547994770-e5d8509b114d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'
+    
+        }
+    
     ]
 }
 });

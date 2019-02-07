@@ -16,57 +16,121 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-        <a class="navbar-brand"><img src="css/img/logo.svg" alt="logo"> Logo </a>
-        <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div id="my-nav" class="collapse navbar-collapse">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Menu</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Menu</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Menu</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Menu</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Menu</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+        <div class="container">
+                <div class="row">
+                    <div class="col-12 p-3 p-lg-0">
+            
+                            <nav class="navbar navbar-expand-lg navbar-light bg-dark animated fadeInDown  ">
+                                    <a class="navbar-brand"><img src="css/img/logo.svg" alt="logo"> Logo </a>
+                                    <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse">
+                                        <span class="navbar-toggler-icon"></span>
+                                    </button>
+                                    <div id="my-nav" class="collapse navbar-collapse">
+                                        <ul class="navbar-nav ml-auto">
+                                            <li class="nav-item active">
+                                                <a class="nav-link" href="#">Наука</a>
+                                            </li>
+                                            <li class="nav-item active">
+                                                <a class="nav-link" href="#">Техника</a>
+                                            </li>
+                                            <li class="nav-item active">
+                                                <a class="nav-link" href="#">Бизнес</a>
+                                            </li>
+                                            <li class="nav-item active">
+                                                <a class="nav-link" href="#">Мир</a>
+                                            </li>
+                                            <li class="nav-item active">
+                                                <a class="nav-link" href="#">Тренды</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </nav>
+            
+                    </div>
+                </div>
+            </div>
+             
 
     <div id="app">
 
-<page-blog
-header="Facebook разрешил удалять отправленные сообщения в чатах"
-text-blog="В мессенджере Facebook появилась функция, позволяющая удалять отправленные сообщения в чатах. Она добавлена в новые версии приложения для iOS и Android, сообщает Meduza.
-
-Чтобы удалить сообщение, нужно дважды прикоснуться к нему на экране. Всплывёт меню, в котором пользователю предлагается выбрать один из вариантов — скрыть пост в чате только от себя самого или удалить его для всех участников переписки.
-
-Удалить сообщение можно будет только в течение десяти минут с момента отправления его в чат. По истечении этого времени функция становится недоступной.
-
-Facebook сообщил о работе над возможностью удаления отправленных сообщений в чатах более года назад, уточняет издание. Это было сделано после того, как появилась информация о доступе к такой функции у руководителей соцсети."
-linkimg="https://tctechcrunch2011.files.wordpress.com/2016/11/facebook-video-money.png"
-resourse-str="Вконтакте"
-resours-link="https://www.behance.net"
-
-
-></page-blog>  
+<page-blog :pages="pageObject" :lotes="blogMini" ></page-blog>  
         
 
 
     </div>
 
+<script type="text/x-template" id="page-blog">
+
+    <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-8 p-lg-0 p-3">
+                        <page-content v-for="(page, index) in pages" :key="index" :index="index" :page="page"></page-content>
+        
+                </div>
+                <div class="col-lg-4 pr-lg-0 pr-3">
+        
+                        <mini-blog v-for="(lot, index) in lotes" :key="index" :index='index' :lot="lot"></mini-blog>
+        
+                </div>
+        
+        
+        
+            </div>
+        </div>
+
+
+</script>
+
+<script type="text/x-template" id="mini-blog">
+    <div class="row">
+        <div class="col-12">
+        <div class="boxBlog_mini">
+                <ul>
+                    <li v-for="tag in lot.tags">{{ tag }}</li>
+                    </ul>
+                    <h2>{{ lot.header }}</h2>
+                    <span> {{ lot.dates }} </span> <a class="btn_arrow" :href="lot.link"></a>
+        
+        </div>
+        </div>
+        
+        </div>
+        
+
+</script>
+
+<script type="text/x-template" id="page-content">
+    <div class="page">
+        
+            <div :style="{ 'background-image': 'url(' + page.img + ')' }" class="img_page"></div>
+            <h1>
+               {{ page.header }}
+
+            </h1>
+            <p>
+            {{ page.textBlog }} </p>
+    
+            <hr class="mt-5 mb-0">
+            <div class="resours">
+                <div class="row">
+
+                    <div class="col-6">
+                        <p>Источник</p>
+                    </div>
+                    <div class="col-6">
+                        <a :href=" page.resoursLink ">{{ page.resourseStr }}</a>
+                    </div>
+
+                </div>
+            </div>
+      
 
 
 
+        </div>
+
+
+</script>
 
 
     <footer class="footer">

@@ -16,96 +16,136 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-        <a class="navbar-brand"><img src="css/img/logo.svg" alt="logo"> Logo </a>
-        <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div id="my-nav" class="collapse navbar-collapse">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Menu</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Menu</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Menu</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Menu</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Menu</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+        <div class="container">
+                <div class="row">
+                    <div class="col-12 p-3 p-lg-0">
+            
+                            <nav class="navbar navbar-expand-lg navbar-light bg-dark animated fadeInDown  ">
+                                    <a class="navbar-brand"><img src="css/img/logo.svg" alt="logo"> Logo </a>
+                                    <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse">
+                                        <span class="navbar-toggler-icon"></span>
+                                    </button>
+                                    <div id="my-nav" class="collapse navbar-collapse">
+                                        <ul class="navbar-nav ml-auto">
+                                            <li class="nav-item active">
+                                                <a class="nav-link" href="#">Наука</a>
+                                            </li>
+                                            <li class="nav-item active">
+                                                <a class="nav-link" href="#">Техника</a>
+                                            </li>
+                                            <li class="nav-item active">
+                                                <a class="nav-link" href="#">Бизнес</a>
+                                            </li>
+                                            <li class="nav-item active">
+                                                <a class="nav-link" href="#">Мир</a>
+                                            </li>
+                                            <li class="nav-item active">
+                                                <a class="nav-link" href="#">Тренды</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </nav>
+            
+                    </div>
+                </div>
+            </div>
+             
 
     <div id="app">
 
-        <div class="container ">
 
-            <div class="row">
-
-                <div class="col-lg-9">
-                    <div class="row">
-                        <div class="col-lg-12">
-
-                            
-                                <item-page
-                                :content=" [
-                                {
-                                    header: 'Что делать, если всё пошло не так?',
-                                    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit sed explicabo eligendi facere atque tenetur!',
-                                    imgitem: 'https://images.unsplash.com/photo-1549417182-56f2bafc2c40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1355&q=80'
-                            
-                                },
-                                {
-                                    header: 'Выпущен инструмент для сборки node-пакетов одной командой',
-                                    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit sed explicabo eligendi facere atque tenetur!',
-                                    imgitem: 'https://images.unsplash.com/photo-1547979854-5333256878de?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'
-                            
-                                },
-                                {
-                                    header: 'Mail.ru Group запустила свой новый браузер Atom',
-                                    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit sed explicabo eligendi facere atque tenetur!',
-                                    imgitem: 'https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1355&q=80'
-                            
-                                },
-                                {
-                                    header: 'В бета-версии iOS 12.2 появились новые Animoji',
-                                    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit sed explicabo eligendi facere atque tenetur!',
-                                    imgitem: 'https://images.unsplash.com/photo-1547994770-e5d8509b114d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'
-                            
-                                }
-                            
-                            ]"
-                                ></item-page> 
-
-
-                        </div>
-
-                    </div>
-
-                </div>
-                <div class="col-lg-3">
-
-<div class="box_banner"></div>
-
-                </div>
-
-
-
-            </div>
-
-        </div>
-
+            <all-pages :content="allPages"></all-pages>
 
 
     </div>
 
+<script type="text/x-template" id="all-pages">
 
+    <div class="container p-3 p-lg-0">
+            <div class="row">
+                <div class="col-12">
+    <div class="block_head mt-0">
+
+            <h1>Все новости</h1>
+    </div>
+                   
+                </div>
+    
+            </div>
+            <div class="row">
+    
+                <div class="col-lg-9 ">
+                    <div class="row">
+                        <div class="col-lg-12">
+    
+    
+                                <item-page v-for="(cat, index) in content" :key="index" :index="index" :cat="cat"></item-page>
+                            
+    
+    
+                        </div>
+    
+                    </div>
+    
+                </div>
+                <div class="col-lg-3 pl-3 pl-lg-0">
+    
+                    <div class="box_banner">
+<a href="#">
+
+        <img src="https://saleadspro.bitrix24.ru/bitrix/services/main/ajax.php?action=disk.api.file.showImage&humanRE=1&fileId=48976&fileName=Креатив_1_300х600.jpg" alt="rek">
+</a>
+
+
+                    </div>
+                  
+                    
+    
+                </div>
+    
+    
+    
+            </div>
+    
+        </div>
+
+</script>
+
+<script type="text/x-template" id="item-page">
+
+    <div class="box_all">
+            <div class="row">
+
+                <div class="col-lg-3">
+                    <div class="img_box ">
+                        <img :src="cat.imgitem" alt="img">
+
+                    </div>
+
+
+                </div>
+                <div class="col-lg-6">
+
+                    <h1>{{ cat.header }}</h1>
+                    <p>{{ cat.text }}</p>
+
+                </div>
+
+                <div class="col-lg-3">
+
+                    <a class="read_all " href="#">
+                        Читать
+                    </a>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+</script>
+   
 
 
 

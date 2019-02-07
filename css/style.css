@@ -1,24 +1,37 @@
+
 body{
     background-color:#E9F0F3;
     font-family: Roboto;
 }
+
+.b_black{
+    background-color: rgb(28, 28, 51);
+    
+}
+
+
 .navbar{
-background-color: rgb(11, 45, 77) !important;
+    margin-top: 10px;
+background-color: rgb(255, 255, 255) !important;
+border-radius: 4px;
 }
+
 .nav-link{
-    color: white !important;
+    color: #334259 !important;
     margin-right: 40px;
+    font-weight: 500;
 }
+
 .navbar-brand{
-    color: white !important;
+    color: #334259 !important;
 
 }
 .navbar-brand img{
 width: 40px;
 
 }
-.one_he{
-    margin-top: 50px;
+.b_text{
+    color: white !important; 
 }
 
 h1{
@@ -34,11 +47,14 @@ h1{
     width: auto;
     height: 300px;
     background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
     border-radius: 6px;
     margin-bottom: 12px;
    padding: 25px;
    z-index: 1;
+   transition: background-position 1.8s ease-in-out;
+   cursor: pointer;
 }
 .boxBlog::before {
     content: "";
@@ -52,12 +68,18 @@ h1{
     background: linear-gradient(121.47deg, #334259 9.17%, rgba(80, 186, 255, 0) 177.69%);
  
   }
+  .boxBlog:hover{
+    background-position: bottom  right;
+  }
+
 @media screen and (max-width: 990px){
 .boxBlog{
     height: auto;
+    
 }
 
 }
+
 
 .category ul{
 display: block;
@@ -70,12 +92,20 @@ padding: 0;
     padding: 3px 15px;
     background-color: white;
     border-radius: 50px;
+    margin-right: 5px;
 }
   
+.text_box{
+display: block;
+width: auto;
+height: 90px;
 
+
+}
 .boxBlog h2{
     display: block;
     color: white;
+    font-size: 24px;
 }
 .boxBlog p{
     color: white;
@@ -89,6 +119,8 @@ padding: 0;
     border-radius: 6px;
     margin-bottom: 12px;
     overflow: hidden;
+    transition: .3s;
+    cursor: pointer;
 }
 .btn_read{
     padding: 10px 70px;
@@ -98,28 +130,40 @@ padding: 0;
     border-radius: 2px;
     font-weight: 700;
     font-size: 14px;
-color: #6B96D8;
-    display: inline-block;
+    color: #6B96D8;
+   
     
+}
+
+.boxBlog_mini:hover{
+    box-shadow: 0px 5px 20px rgba(27, 29, 34, 0.151)
+
 }
 .btn_read:hover{
     text-decoration: none;
 }
 .but_data{
-   display: block;
-   position: relative;
-   bottom: 0;
+   display: flex;
+   padding-top: 30px;
    margin-top: 40px;
+   justify-content: space-between;
 }
 
 .but_data span{
-    float: right;
+   
 color: white;
-text-align: right;
-margin-top: 10px;
 font-weight: 500;
-}
+margin-top: 10px
 
+
+
+
+}
+.text_mini{
+    height: 90px;
+    overflow: hidden;
+   margin-bottom: 5px;
+}
 .boxBlog_mini ul{
     padding: 0;
 }
@@ -137,6 +181,7 @@ font-weight: 500;
 line-height: normal;
 font-size: 18px;
 color: #658F9C;
+
 }
 .boxBlog_mini span{
     font-weight: 500;
@@ -174,11 +219,13 @@ color: #658F9C;
     width: auto;
     height: 300px;
     border-radius: 8px;
-    background-size: contain;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 nav{
-    margin-bottom: 50px;
+    margin-bottom: 10px;
 }
 
 footer{
@@ -202,6 +249,7 @@ footer{
     border-radius: 4px;
     padding: 10px;
     margin-bottom: 10px;
+    overflow: hidden;
 }
 .img_box {
     display: block;
@@ -223,6 +271,7 @@ footer{
     margin: 0 auto;
     margin-top: 50px;
     transition: 0.2s;
+    
 }
 .read_all:hover{
     text-decoration: none;
@@ -233,6 +282,76 @@ footer{
 .box_banner{
     display: block;
 width: auto;
-height: 300px;
+height: auto;
 background-color: #334259;
+margin-bottom: 10px;
+overflow: hidden;
+}
+.box_banner img{
+    display: block;
+    width: 100%;
+}
+
+.block_head{
+    display: block;
+    background-color: white;
+    height: 50px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    margin-top: 50px;
+    overflow: hidden;
+   
+}
+.block_head h1{
+    padding: 12px;
+    font-size: 24px;
+}
+.dark_mode{
+    display: block;
+    width: 25px;
+    height: 25px;
+    border: none;
+    background: none;
+    background-image: url(img/moon.svg);
+    background-size: contain;
+    margin-top: 7px;
+    cursor: pointer;
+    outline: none;
+}
+
+
+
+
+
+
+@media screen and (max-width: 990px){
+    .box_all{
+        height: auto;
+    }
+    .img_box{
+        height: 200px;
+        margin-bottom: 10px;
+    }
+    .img_box img{
+width: 100%;
+    }
+    .read_all{
+        margin-top: 20px;
+        background-color: #334259;
+        color: white;
+    }
+
+}
+@media screen and (max-width: 440px){
+    .text_box{
+        height: 150px;
+    }
+    .boxBlog{
+        padding: 15px;
+    }
+
+}
+.b_black_box{
+    background-color: rgb(42, 42, 63) !important;
+    color: white !important;
 }

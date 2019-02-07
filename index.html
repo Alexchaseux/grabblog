@@ -9,54 +9,91 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
         crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css">
     <link rel="stylesheet" href="css/style.css">
+
 
     <title>BlogNews</title>
 </head>
 
 <body>
+<div  class="container">
+    <div class="row">
+        <div class="col-12 p-3 p-lg-0">
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-        <a class="navbar-brand"><img src="css/img/logo.svg" alt="logo"> Logo </a>
-        <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div id="my-nav" class="collapse navbar-collapse">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">НАУКА</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">ТЕХНИКА</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">БИЗНЕС</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">МИР</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">ТРЕНДЫ</a>
-                </li>
-            </ul>
+                <nav class="navbar navbar-expand-lg navbar-light bg-dark animated fadeInDown  ">
+                        <a class="navbar-brand"><img src="css/img/logo.svg" alt="logo"> Logo </a>
+                        <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div id="my-nav" class="collapse navbar-collapse">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="#">Наука</a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="#">Техника</a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="#">Бизнес</a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="#">Мир</a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="#">Тренды</a>
+                                </li>
+                                <li class="nav-item ">
+                                       <button @click="onDark" class="dark_mode" type="button"></button>
+                                    </li>
+                            </ul>
+                        </div>
+                    </nav>
+
         </div>
-    </nav>
+    </div>
+</div>
+ 
 
-    <div id="app">
-        <blog-box :items="blogItems" header-box='НОВОСТИ НАУКИ'></blog-box>
-        {{ firstItem }}
+
+
+
+    <div id="app" >
+        <blog-box 
+        :items="blogItems"
+        :lotes="blogMini" 
+        header-box='НОВОСТИ НАУКИ'></blog-box>
+
+        <blog-box 
+        :items="blogItems" 
+        :lotes="blogMini" 
+        header-box='НОВОСТИ ТЕХНИКИ'></blog-box>
+       
     </div>
 
+
+
+
+
+
+
+
+
 <script type="text/x-template" id="blog-item">
-    <div :class="index == 0 ? 'col-lg-12' : 'col-lg-6 pl-0 pl-lg-3'">
+    <div :class="index == 0 ? 'col-lg-12 pl-lg-0 pl-3' : 'col-lg-6 pl-3 pl-lg-0'">
         <div  class="boxBlog" :style="{ 'background-image': 'url(' + item.imgLink + ')' }">
             <div class="category">
                 <ul>
                     <li v-for="tag in item.tags">{{ tag }}</li>
                 </ul>
             </div>
-            <h2>{{ item.title }}</h2>
-            <p> {{ item.shortText }} </p>
+            <div class="text_box">
+                    <h2>{{ item.title }}</h2>
+            
+                    <p> {{ item.shortText }} </p>
+
+            </div>
+          
             <div class="but_data">
                 <a class="btn_read" :href="item.url">ЧИТАТЬ</a> <span>
                 {{ item.year }}
@@ -65,29 +102,65 @@
         </div>
     </div>
 </script>
+
 <script type="text/x-template" id="blog-box">
     <div class="container"> 
         <div class="row">
-            <div class="col-12">
-                <h1 class="one_he">{{ headerBox }}</h1>
+            <div class="col-12 p-3 p-lg-0">
+                <div class="block_head">
+                        <h1 class=" animated fadeInDown delay-1s">{{ headerBox }}</h1>
+
+                </div>
+               
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-8 pr-lg-0 pr-3">
+            <div class="col-lg-8 pr-lg-0 pr-3 animated fadeIn">
                 <div class="row">
-                    <blog-item v-for="(item, index) in items" :index='index' :item="item"></blog-item>
+                    <blog-item v-for="(item, index) in items" :index='index' :key="index" :item="item"></blog-item>
                 </div>
             </div>
-            <div class="col-lg-4 pr-lg-0 pr-3">
-                  <mini-blog></mini-blog>
+            <div class="col-lg-4 pr-lg-0 pr-3 animated fadeIn ">
+                <mini-blog v-for="(lot, index) in lotes" :key="index" :index='index' :lot="lot"></mini-blog>
             </div>
         </div>
+<div class="row">
+<div class="col-12 p-3 p-lg-0">
+<a href="/allpages.html">Все новости</a>
+
+</div>
+
+</div>
         <div class="container">
+        
             <hr class="mt-5 mb-0">
         </div>                            
     </div>
 </script>
 
+
+
+<script type="text/x-template" id="mini-blog">
+    <div class="row">
+        <div class="col-12">
+        <div class="boxBlog_mini">
+            <div class="text_mini">
+
+                    <ul>
+                            <li v-for="tag in lot.tags">{{ tag }}</li>
+                            </ul>
+                            <h2>{{ lot.header }}</h2>
+            </div>    
+     
+                    <span> {{ lot.dates }} </span> <a class="btn_arrow" :href="lot.link"></a>
+        
+        </div>
+        </div>
+        
+        </div>
+        
+
+</script>
 
 
 
@@ -116,7 +189,6 @@
 
 
 
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -127,6 +199,19 @@
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.22/vue.js"></script>
     <script src="js/script.js"></script>
+    <script>
+    $('.dark_mode').on("click", function(){
+$("body").toggleClass('b_black')
+$(".navbar").toggleClass('b_black_box');
+$(".nav-link").toggleClass('b_text');
+$(".navbar-brand").toggleClass('b_text');
+$(".block_head").toggleClass('b_black_box');
+$(".block_head h1").toggleClass('b_black_box');
+$(".boxBlog_mini").toggleClass('b_black_box')
+$(".boxBlog_mini h2").toggleClass('b_black_box')
+
+    });
+    </script>
 </body>
 
 </html>
